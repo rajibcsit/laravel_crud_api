@@ -31,19 +31,27 @@ class LessonController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Lesson $lesson)
+    public function show($id)
     {
-        //
+        $Singlelesson = Lesson::findOrFail($id);
+        return new LessonResource($Singlelesson);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(LessonRequest $request, Lesson $lesson)
+    public function update(LessonRequest $request, $id)
     {
-        $lesson->update($request->all());
+        $singleLesson = Lesson::findOrFail($id);
 
-        return new LessonResource($lesson);
+        $singleLesson->name = $request->name;
+        $singleLesson->title = $request->title;
+        $singleLesson->save();
+
+        return response()->json([
+            'message' => "lesson  successfullye update",
+            "lesson" => $singleLesson
+        ], 200);
     }
 
     /**
@@ -52,6 +60,9 @@ class LessonController extends Controller
     public function destroy(Lesson $lesson)
     {
         $lesson->delete();
-        return response(null, 204);
+        return response()->json([
+            'message' => "Course deleted successfully",
+            "lesson" => $lesson
+        ], 200);
     }
 }
