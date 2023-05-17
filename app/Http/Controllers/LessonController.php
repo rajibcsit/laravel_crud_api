@@ -61,7 +61,7 @@ class LessonController extends Controller
     {
         $lesson->delete();
         return response()->json([
-            'message' => "Course deleted successfully",
+            'message' => "Lesson deleted successfully",
             "lesson" => $lesson
         ], 200);
     }
