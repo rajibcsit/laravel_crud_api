@@ -11,8 +11,8 @@ use  App\Http\Controllers\LessonController;
 // });
 
 Route::post('/auth/register', [AuthController::class, 'createUser']);
-Route::post('/auth/login', [AuthController::class, 'loginUser']);
+Route::post('/auth/login', [AuthController::class, 'loginUser'])->name('login');
 
-Route::middleware(['auth:sanctum'])->group(function () {
-    Route::resource('lesson', LessonController::class)->except(['create', 'edit']);
-});
+// Route::middleware(['auth:sanctum'])->group(function () {
+Route::resource('lesson', LessonController::class)->except(['create', 'edit']);
+// });
