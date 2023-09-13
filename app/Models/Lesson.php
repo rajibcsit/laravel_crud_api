@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lesson extends Model
 {
-    protected $fillable = ["name", "title"];
+    protected $fillable = ['id', "name", "title"];
+
     use HasFactory;
 }
